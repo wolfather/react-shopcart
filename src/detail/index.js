@@ -10,30 +10,51 @@ class Detail extends Component {
         buttonisVisible: true
     }
 
-    addProductToShopcart(product) {
-        this.props.action(product.id)
+    addProductToShopcart() {
+        this.props.addToCart(this.props.match.params.id)
 
         this.setState({buttonisVisible: false})
     }
 
-    render() {
-        const detail = this.props.detail,
-        productAlreadyAddInShopcart = this.props.shopcart.filter(shopcartItem => {
-            return shopcartItem.id === detail.id
+    hasProductInCart () {
+        return this.props.shopcart.find(shopcartItem => {
+            return shopcartItem.id === this.props.match.params.id
         })
-        
+    }
+    getProduct() {
+        return this.props.products.find(product => {
+            return product.id === this.props.match.params.id
+        })
+    }
+
+    renderProduct() {
+        const detail = this.getProduct()
+
+        return(<div className="product-detail">
+            <h1 className="product-detail-title">{detail.name}</h1>
+            <section className="product-detail-description">
+                {detail.shortDescription}
+            </section>
+            <div className="product-detail-price">{detail.price}</div>
+        </div>)
+    }
+
+    renderAddToCartButton() {
+        return(<div>
+            <a onClick={() => this.addProductToShopcart()}>Add to cart</a>
+        </div>)
+    }
+
+    render() {
         return (
             <div>
-                <h1>{detail.name}</h1>
-                <div>{detail.price}</div>
+                {this.renderProduct()}
                 
                 <div>
                     {
-                        !productAlreadyAddInShopcart.length &&
+                        !this.hasProductInCart() &&
                         this.state.buttonisVisible ? 
-                        <div>
-                            <a onClick={() => this.addProductToShopcart(detail)}>Add to cart</a>
-                        </div> : 
+                        this.renderAddToCartButton() : 
                         <div>produto adicionado</div>
                     }
                 </div>
@@ -42,15 +63,14 @@ class Detail extends Component {
     }
 }
 
-const mapStateToProps = (state, props) => {
-    const detail = state.products.find(product => product.id === props.match.params.id)
+const mapStateToProps = state => {
     return {
-        detail,
+        products: state.products,
         shopcart: state.shopcart
     }
 },
 mapDispatchToProps = dispatch => {
-    return bindActionCreators({action: action.addProductToCart}, dispatch)
+    return bindActionCreators({addToCart: action.addProductToCart}, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Detail)

@@ -5,15 +5,13 @@ import { Provider } from 'react-redux'
 
 import createHistory from 'history/createBrowserHistory'
 import { Router, Route, Link, Switch } from 'react-router-dom'
-import { ConnectedRouter } from 'react-router-redux'
 
-import  STORE from './core/store'
+import STORE from './core/store'
 import Header from './header'
 import Home from './home'
 import Detail from './detail'
 import Category from './category'
 import Shopcart from './shopcart'
-
 
 const history = createHistory()
 
