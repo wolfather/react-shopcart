@@ -1,4 +1,4 @@
-const initialState = [
+export const products = [
     {
         id: '1',
         images: {
@@ -8,7 +8,8 @@ const initialState = [
         name: 'product 1',
         price: '11,22',
         categoryId: 'cat-4',
-        shortDescription: 'A short description of product 1'
+        shortDescription: 'A short description of product 1',
+        active: true
     },
     {
         id: '2',
@@ -19,7 +20,8 @@ const initialState = [
         name: 'product 2',
         price: '22,22',
         categoryId: 'cat-3',
-        shortDescription: 'A short description of product 2'
+        shortDescription: 'A short description of product 2',
+        active: true
     },
     {
         id: '3',
@@ -30,11 +32,24 @@ const initialState = [
         name: 'product 3',
         price: '33,22',
         categoryId: 'cat-2',
-        shortDescription: 'A short description of product 3'
+        shortDescription: 'A short description of product 3',
+        active: true
+    },
+    {
+        id: '4',
+        images: {
+            thumb: 'assets/product-thumb-4.jpg',
+            medium: 'assets/product-medium-4.jpg'
+        },
+        name: 'product 4',
+        price: '44,21',
+        categoryId: 'cat-2',
+        shortDescription: 'A short description of product 4',
+        active: false
     }
 ]
 
-const categories = [
+export const categories = [
     {
         id: 'cat-1',
         alias: 'category A',
@@ -56,7 +71,5 @@ const categories = [
         active: true
     },
 ]
-const mock = {
-    initialState, categories
-}
-export default mock
+
+//export products

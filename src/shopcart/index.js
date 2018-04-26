@@ -33,16 +33,8 @@ class Shopcart extends Component {
 }
 
 const mapStateToProps = (state, props) => {
-    let productsInShopcart;
-
-    if(!!state.shopcart.length) {
-        productsInShopcart = state.products.filter(product => {
-            return state.shopcart.some(item => product.id === item.id)
-        })
-    }
-
     return {
-        shopcart: productsInShopcart
+        shopcart: state.shopcart.shopcartState
     }
 }
 

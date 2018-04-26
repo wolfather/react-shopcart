@@ -1,35 +1,35 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import { Link } from 'react-router-dom'
 
-import * as action from '../core/action/actions'
+import { bindActionCreators } from 'redux'
+
+import {
+    getProductById,
+    addProductToCart
+} from '../core/action/actions'
 
 class Detail extends Component {
     state = {
         buttonisVisible: true
     }
 
+    constructor(props) {
+        super(props)
+        console.log(props)
+    }
+    componentDidMount(props) {
+        this.props.getProductById(this.props.match.params.id)
+    }
+
     addProductToShopcart() {
-        this.props.addToCart(this.props.match.params.id)
+        this.props.addProductToCart(this.props.match.params.id)
 
         this.setState({buttonisVisible: false})
     }
 
-    hasProductInCart () {
-        return this.props.shopcart.find(shopcartItem => {
-            return shopcartItem.id === this.props.match.params.id
-        })
-    }
-    getProduct() {
-        return this.props.products.find(product => {
-            return product.id === this.props.match.params.id
-        })
-    }
-
     renderProduct() {
-        const detail = this.getProduct()
-
+        const detail = this.props.detail
+        
         return(<div className="product-detail">
             <h1 className="product-detail-title">{detail.name}</h1>
             <section className="product-detail-description">
@@ -46,17 +46,21 @@ class Detail extends Component {
     }
 
     render() {
+        console.log(this.props)
+        if(!this.props.detail) {
+            return(<div>Nada aqui</div>)
+        }
         return (
             <div>
                 {this.renderProduct()}
-                
                 <div>
                     {
-                        !this.hasProductInCart() &&
+                        this.props.detail &&
                         this.state.buttonisVisible ? 
                         this.renderAddToCartButton() : 
                         <div>produto adicionado</div>
                     }
+                    
                 </div>
             </div>
         )
@@ -64,13 +68,17 @@ class Detail extends Component {
 }
 
 const mapStateToProps = state => {
+    console.log(state)
     return {
-        products: state.products,
+        detail: state.detail.detailState,
         shopcart: state.shopcart
     }
-},
-mapDispatchToProps = dispatch => {
-    return bindActionCreators({addToCart: action.addProductToCart}, dispatch)
+}
+const mapDispatchToProps = dispatch => {
+    return bindActionCreators({
+                getProductById,
+                addProductToCart
+            }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Detail)

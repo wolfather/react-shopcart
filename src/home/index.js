@@ -1,11 +1,18 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-//import { bindActionCreators } from 'redux'
 
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
+import { getProducts } from '../core/action/actions'
+import { bindActionCreators } from 'redux';
 
-class HomeComponent extends Component {
+
+class Home extends Component {
+    componentDidMount() {
+        this.props.getProducts()
+    }
+
     renderProducts() {
+        console.log(this.props)
         return(this.props.products.map(product => (
             <div className="product" 
                 key={product.id}>
@@ -24,9 +31,10 @@ class HomeComponent extends Component {
     }
 }
 
-
 const mapStateToProps = state => {
-    return {products: state.products}
+    return {products: state.products.productsState}
 }
-
-export default connect(mapStateToProps, null)(HomeComponent)
+const mapDispatchToProps = dispatch => {
+    return bindActionCreators({getProducts}, dispatch)
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Home)

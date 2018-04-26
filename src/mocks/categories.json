@@ -1,0 +1,23 @@
+{"categories" : [
+    {
+        "id": "cat-1",
+        "alias": "category A",
+        "active": true
+    },
+    {
+        "id": "cat-2",
+        "alias": "category B",
+        "active": true
+    },
+    {
+        "id": "cat-3",
+        "alias": "category C",
+        "active": true
+    },
+    {
+        "id": "cat-4",
+        "alias": "category D",
+        "active": false
+    }
+]}
+
