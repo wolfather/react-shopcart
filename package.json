@@ -2,6 +2,18 @@
   "name": "react-shopcart",
   "version": "0.1.0",
   "private": true,
+  "keywords": [
+    "javascript",
+    "ES7",
+    "react",
+    "redux",
+    "saga",
+    "ecommerce prototype"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wolfather/react-shopcart.git"
+  },
   "dependencies": {
     "axios": "^0.18.0",
     "react": "16.3.2",
