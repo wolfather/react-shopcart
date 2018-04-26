@@ -10,7 +10,6 @@ import createHistory from 'history/createBrowserHistory'
 import createSagaMiddleWare from 'redux-saga'
 
 import combineReducers from '../reducer'
-//import mock from '../reducer/mock'
 import root from '../sagas';
 
 const logger = createLogger()
@@ -22,14 +21,13 @@ const initialState = window.__INITIAL_STATE__
 
 const STORE = createStore(
     combineReducers,
-    composeWithDevTools(
-    //composeWithDevTools(
+    compose(
         applyMiddleware(
             logger,
             routerMiddleware(history),
             saga
         ),
-        //window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
     )
 )
 saga.run(root)
