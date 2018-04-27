@@ -2,13 +2,11 @@ import { products } from './mock'
 import axios from 'axios'
 
 const initialState = {
-    //productsState: products,
-    shopcartState: [],
     //errorsState: [],
     detailState: {}
 }
-//axios.get('https://rawgit.com/wolfather/react-shopcart/master/src/core/reducer/mock.js')
-//    .then(response => console.log(response.data))
+axios.get('https://rawgit.com/wolfather/react-shopcart/master/src/mocks/products.json')
+    .then(response => console.log(response.data))
 
 export default function(state = initialState, action) {
     switch(action.type) {
