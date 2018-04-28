@@ -12,15 +12,14 @@ import createSagaMiddleWare from 'redux-saga'
 import combineReducers from '../reducer'
 import root from '../sagas';
 
-const logger = createLogger()
-
-const history = createHistory()
-const saga = createSagaMiddleWare()
-const initialState = window.__INITIAL_STATE__
-
+const logger = createLogger(),
+    history = createHistory(),
+    saga = createSagaMiddleWare(),
+    initialState = window.__INITIAL_STATE__
 
 const STORE = createStore(
     combineReducers,
+    initialState,
     compose(
         applyMiddleware(
             logger,
@@ -31,7 +30,5 @@ const STORE = createStore(
     )
 )
 saga.run(root)
-
-
 
 export default STORE

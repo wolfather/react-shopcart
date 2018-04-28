@@ -16,6 +16,8 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "bourbon": "^5.0.0",
+    "bourbon-neat": "^1.9.0",
     "react": "16.3.2",
     "react-dom": "16.3.2",
     "react-redux": "5.0.7",
@@ -36,6 +38,9 @@
     "node": "^8.0.0"
   },
   "devDependencies": {
+    "babel-jest": "^22.4.3",
+    "jest": "^22.4.3",
+    "react-test-render": "^1.1.1",
     "redux-devtools-extension": "^2.13.2"
   }
 }

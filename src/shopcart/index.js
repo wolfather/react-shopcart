@@ -2,6 +2,12 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
+import {
+    sumProductToCart,
+    subProductToCart,
+    addProductToCart
+} from '../core/action/actions'
+console.log(sumProductToCart)
 
 class Shopcart extends Component {
     renderProductsInCart() {
@@ -9,9 +15,15 @@ class Shopcart extends Component {
             return(<div className="shopcart-item">
                 {this.props.shopcart.map(item => (
                     <div key={item.id}>
-                        <img src={item.images.thumb} alt=""/>
+                        <img src={item.images.thumb}/>
                         <p>{item.name}</p>
                         <p>{item.price}</p>
+                        <div className="controls">
+                            <span className="control control-minus" 
+                                onClick={() => this.props.subProductToCart(item.id)}>&#8722;</span>
+                            <span className="control control-plus" 
+                                onClick={() => this.props.sumProductToCart(item.id)}>&#43;</span>
+                        </div>
                     </div>)
                 )}
             </div>)
@@ -20,7 +32,6 @@ class Shopcart extends Component {
     }
 
     render() {
-        console.log(this.props.shopcart)
         return(<div className="shopcart">
             <h2>SHOPCART</h2>
             {this.renderProductsInCart()}
@@ -28,11 +39,14 @@ class Shopcart extends Component {
     }
 }
 
-const mapStateToProps = (state, props) => {
-    console.log('SHOPCART', state)
-    return {
-        shopcart: state.shopcart
-    }
+const mapStateToProps = (state) => {
+    return { shopcart: state.shopcart }
+}
+const mapDispatchToProps = dispatch => {
+    return bindActionCreators({
+        sumProductToCart, 
+        subProductToCart
+    }, dispatch)
 }
 
-export default connect(mapStateToProps)(Shopcart)
+export default connect(mapStateToProps, mapDispatchToProps)(Shopcart)

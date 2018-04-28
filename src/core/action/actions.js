@@ -11,6 +11,18 @@ export const addProductToCart = productId => {
         payload: productId
     }
 }
+export const sumProductToCart = productId => {
+    return {
+        type: 'SUM_PRODUCT_IN_CART',
+        payload: productId
+    }
+}
+export const subProductToCart = productId => {
+    return {
+        type: 'SUB_PRODUCT_IN_CART',
+        payload: productId
+    }
+}
 
 export const getProductById = productId => {
     return {
