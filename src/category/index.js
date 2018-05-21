@@ -2,17 +2,18 @@ import React, { Component } from 'react'
 
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import  * as action from '../core/action/actions'
+import { Link } from 'react-router-dom'
+import  { getProductsByCategory } from '../core/action/actions'
 
 class Category extends Component {
-    componentWillMount() {
-        this.props.action(this.props.match.params.id)
+    componentDidMount() {
+        this.props.getProductsByCategory(this.props.match.params.id)
     }
     render() {
         return (
             <div>
                 <h1>CATEGORY</h1>
-                {this.props.category.map(product => (
+                {this.props.products.map(product => (
                     <div key={product.id}>
                         {product.name}
                     </div>
@@ -23,11 +24,10 @@ class Category extends Component {
 }
 
 const mapStateToProps = state => {
-    console.log(state)
-    return { category : state.category }
-}
-const mapDispatchToProps = dispatch => {
-    return bindActionCreators({action}, dispatch)
+    return { products : state.category.categoryProducts }
+},
+mapDispatchToProps = dispatch => {
+    return bindActionCreators({getProductsByCategory}, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Category)

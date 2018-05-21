@@ -15,7 +15,6 @@ class Detail extends Component {
 
     constructor(props) {
         super(props)
-        //console.log(props)
     }
     componentDidMount(props) {
         this.props.getProductById(this.props.match.params.id)
@@ -46,7 +45,6 @@ class Detail extends Component {
     }
 
     render() {
-        //console.log(this.props)
         if(!this.props.detail) {
             return(<div>Nada aqui</div>)
         }
@@ -68,7 +66,6 @@ class Detail extends Component {
 }
 
 const mapStateToProps = state => {
-    //console.log(state)
     return {
         detail: state.detail.detailState,
         shopcart: state.shopcart

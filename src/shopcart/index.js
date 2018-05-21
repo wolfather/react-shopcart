@@ -5,9 +5,7 @@ import { bindActionCreators } from 'redux'
 import {
     sumProductToCart,
     subProductToCart,
-    addProductToCart
 } from '../core/action/actions'
-console.log(sumProductToCart)
 
 class Shopcart extends Component {
     renderProductsInCart() {

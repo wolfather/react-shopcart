@@ -1,7 +1,14 @@
 export const getProductsByCategory = categoryId => {
+    console.log('aqui', categoryId)
     return {
         type: 'GET_PRODUCTS_BY_CATEGORY',
         payload: categoryId
+    }
+}
+
+export const getCategoriesActives = () => {
+    return {
+        type: 'GET_CATEGORIES_ACTIVES'
     }
 }
 

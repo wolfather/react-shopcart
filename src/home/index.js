@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 import { Link } from 'react-router-dom'
 import { getProducts } from '../core/action/actions'
-import { bindActionCreators } from 'redux';
+import { bindActionCreators } from 'redux'
 
 
 class Home extends Component {
@@ -12,15 +12,15 @@ class Home extends Component {
     }
 
     renderProducts() {
-        console.log(this.props)
-        return(this.props.products.map(product => (
-            <div className="product" 
-                key={product.id}>
-                <img src={product.images.medium} alt=""/>
-                <Link to={`/detail/${product.id}`}>{product.name}</Link>
-                <p>{product.price}</p>
-            </div>
-        )))
+        return this.props.products.map(product => {
+            const {id, images, name, price} = product
+            return(<div className="product" 
+                key={id}>
+                <img src={images.medium} alt={name} />
+                <Link to={`/detail/${id}`}>{name}</Link>
+                <p>{price}</p>
+            </div>)
+        })
     }
     render() {
         return (<div>

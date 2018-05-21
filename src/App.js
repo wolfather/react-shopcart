@@ -10,8 +10,9 @@ import STORE from './core/store'
 import Header from './header'
 import Home from './home'
 import Detail from './detail'
-import Category from './category'
+import Menu from './menu'
 import Shopcart from './shopcart'
+import Category from './category'
 
 const history = createHistory()
 
@@ -22,6 +23,7 @@ class App extends Component {
         <Router history={history}>
           <div>
             <Header />
+            <Menu />
             <Switch>
               <Route exact path='/' component={Home} />
               <Route exact path='/detail/:id' component={Detail} />
