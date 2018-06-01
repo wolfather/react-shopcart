@@ -13,9 +13,6 @@ class Detail extends Component {
         buttonisVisible: true
     }
 
-    constructor(props) {
-        super(props)
-    }
     componentDidMount(props) {
         this.props.getProductById(this.props.match.params.id)
     }

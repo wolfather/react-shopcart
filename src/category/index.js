@@ -9,6 +9,13 @@ class Category extends Component {
     componentDidMount() {
         this.props.getProductsByCategory(this.props.match.params.id)
     }
+
+    componentWillReceiveProps(nextProps) {
+        if(this.props.match.params.id !== nextProps.match.params.id) {
+            nextProps.getProductsByCategory(nextProps.match.params.id)
+        }
+    }
+
     render() {
         return (
             <div>
